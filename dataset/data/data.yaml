@@ -1,0 +1,4 @@
+train: /content/drive/MyDrive/Real_Time_Face_Mask_Detection/dataset/data/train.txt
+val: /content/drive/MyDrive/Real_Time_Face_Mask_Detection/dataset/data/validate.txt
+nc: 3 # number of classes
+names: ["0", "1", "2"] # class names
