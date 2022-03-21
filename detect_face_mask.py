@@ -2,16 +2,20 @@ import cv2
 import time
 import sys
 import numpy as np
+import pyautogui
+import pywinctl as gw
+from PIL import ImageGrab
 from centroid_tracker import CentroidTracker
 
 
 class FaceMaskDetection:
 
-	def __init__( self, model, input_width=640, input_height=640, iou_threshold=0.4, confidence_threshold=0.6 ):
+	def __init__( self, model, input_width=640, input_height=640, iou_threshold=0.4, confidence_threshold=0.5 ):
 		self.INPUT_WIDTH = input_width
 		self.INPUT_HEIGHT = input_height
 		self.iou_THRESHOLD = iou_threshold
 		self.CONFIDENCE_THRESHOLD = confidence_threshold
+		self.application = False
 		self.CLASSES = [ "No-Mask", "Mask", "Improper" ]
 		self.COLORS = [ ( 0, 0, 255 ), ( 0, 255, 0 ), ( 0, 255, 255 ) ]
 		is_cuda = len( sys.argv ) > 1 and sys.argv[ 1 ] == "cuda"
@@ -91,6 +95,22 @@ class FaceMaskDetection:
 		self.capture = cv2.VideoCapture( index )
 		self.start_detection()
 
+	def start_application_window( self ):
+		titles = gw.getAllTitles()
+		print( titles )
+		for index, title in enumerate( titles ):
+			print( f"{index}. {title}" )
+		index = int( input( "Select Index of Application Window : " ) )
+		windows = gw.getWindowsWithTitle( titles[ index ] )
+		if windows:
+			win = windows[ 0 ]
+			self.left, self.top, self.width, self.height = win.left, win.top, win.width, win.height
+			self.application = True
+			print( win )
+			self.start_detection()
+		else:
+			print( "No Window Found !" )
+
 	def start_detection( self ):
 		start = time.time_ns()
 
@@ -99,8 +119,12 @@ class FaceMaskDetection:
 		fps = -1
 
 		while True:
+			if self.application:
 
-			_, frame = self.capture.read()
+				screen = np.array( ImageGrab.grab( bbox=( self.left, self.top, self.width, self.height ) ) )
+				frame = cv2.cvtColor( screen, cv2.COLOR_BGR2RGB )
+			else:
+				_, frame = self.capture.read()
 
 			if frame is None:
 				print( "End of stream" )
@@ -111,8 +135,6 @@ class FaceMaskDetection:
 			inputImage = np.zeros( ( _max, _max, 3 ), np.uint8 )
 			inputImage[ 0 : row, 0 : col ] = frame
 
-			# outs = detect( inputImage, net )
-
 			class_ids, confidences, boxes, rect = self.get_detection( inputImage )
 			obj, did = self.tracker.update( rect )
 			frame_count += 1
@@ -122,7 +144,7 @@ class FaceMaskDetection:
 
 				color = self.COLORS[ int( classid ) % len( self.COLORS ) ]
 				cx, cy, x, y, x1, y1 = obj[ 1 ]
-				cv2.rectangle( frame, box, color, 4 )
+				cv2.rectangle( frame, box, color, 2 )
 				cv2.rectangle( frame, ( box[ 0 ], box[ 1 ] - 40 ), ( box[ 0 ] + box[ 2 ], box[ 1 ] ), color, -1 )
 				cv2.putText(
 				    frame,
@@ -130,8 +152,8 @@ class FaceMaskDetection:
 				    cv2.FONT_HERSHEY_SIMPLEX, 1, ( 0, 0, 0 ), 2
 				    )
 				cv2.putText(
-				    frame, "ID {}".format( obj[ 0 ] ), ( cx - 10, cy - 10 ), cv2.FONT_HERSHEY_SIMPLEX, 1, ( 0, 255, 0 ),
-				    2
+				    frame, "ID {}".format( obj[ 0 ] ), ( cx - 10, cy - 10 ), cv2.FONT_HERSHEY_SIMPLEX, 0.5,
+				    ( 0, 255, 0 ), 1
 				    )
 				cv2.circle( frame, ( cx, cy ), 4, color, -1 )
 
@@ -147,7 +169,8 @@ class FaceMaskDetection:
 
 			cv2.imshow( "output", frame )
 
-			if cv2.waitKey( 1 ) > -1:
+			if cv2.waitKey( 1 ) & 0xFF == ord( 'q' ):
+				cv2.destroyAllWindows()
 				print( "finished by user" )
 				break
 
@@ -156,4 +179,5 @@ class FaceMaskDetection:
 
 if __name__ == "__main__":
 	md = FaceMaskDetection( "model/best.onnx" )
-	md.start_web( 1 )
+	md.start_web( "crowd_1.mp4" )
+	# md.start_application_window()
