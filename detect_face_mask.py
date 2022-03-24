@@ -2,15 +2,14 @@ import cv2
 import time
 import sys
 import numpy as np
-import pyautogui
-import pywinctl as gw
-from PIL import ImageGrab
 from centroid_tracker import CentroidTracker
 
 
 class FaceMaskDetection:
 
-	def __init__( self, model, input_width=640, input_height=640, iou_threshold=0.4, confidence_threshold=0.5 ):
+	def __init__(
+	    self, model, input_width=640, input_height=640, iou_threshold=0.4, confidence_threshold=0.5, cuda=False
+	    ):
 		self.INPUT_WIDTH = input_width
 		self.INPUT_HEIGHT = input_height
 		self.iou_THRESHOLD = iou_threshold
@@ -18,10 +17,9 @@ class FaceMaskDetection:
 		self.application = False
 		self.CLASSES = [ "No-Mask", "Mask", "Improper" ]
 		self.COLORS = [ ( 0, 0, 255 ), ( 0, 255, 0 ), ( 0, 255, 255 ) ]
-		is_cuda = len( sys.argv ) > 1 and sys.argv[ 1 ] == "cuda"
 		self.net = cv2.dnn.readNet( model )
 		self.tracker = CentroidTracker()
-		if is_cuda:
+		if cuda:
 			print( "Attempty to use CUDA" )
 			self.net.setPreferableBackend( cv2.dnn.DNN_BACKEND_CUDA )
 			self.net.setPreferableTarget( cv2.dnn.DNN_TARGET_CUDA_FP16 )
@@ -95,22 +93,6 @@ class FaceMaskDetection:
 		self.capture = cv2.VideoCapture( index )
 		self.start_detection()
 
-	def start_application_window( self ):
-		titles = gw.getAllTitles()
-		print( titles )
-		for index, title in enumerate( titles ):
-			print( f"{index}. {title}" )
-		index = int( input( "Select Index of Application Window : " ) )
-		windows = gw.getWindowsWithTitle( titles[ index ] )
-		if windows:
-			win = windows[ 0 ]
-			self.left, self.top, self.width, self.height = win.left, win.top, win.width, win.height
-			self.application = True
-			print( win )
-			self.start_detection()
-		else:
-			print( "No Window Found !" )
-
 	def start_detection( self ):
 		start = time.time_ns()
 
@@ -119,12 +101,8 @@ class FaceMaskDetection:
 		fps = -1
 
 		while True:
-			if self.application:
 
-				screen = np.array( ImageGrab.grab( bbox=( self.left, self.top, self.width, self.height ) ) )
-				frame = cv2.cvtColor( screen, cv2.COLOR_BGR2RGB )
-			else:
-				_, frame = self.capture.read()
+			_, frame = self.capture.read()
 
 			if frame is None:
 				print( "End of stream" )
@@ -179,5 +157,5 @@ class FaceMaskDetection:
 
 if __name__ == "__main__":
 	md = FaceMaskDetection( "model/best.onnx" )
-	md.start_web( "crowd_1.mp4" )
+	md.start_web( 1 )
 	# md.start_application_window()
