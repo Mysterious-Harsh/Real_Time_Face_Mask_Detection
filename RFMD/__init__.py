@@ -20,7 +20,7 @@ app.config[ 'SQLALCHEMY_ECHO' ] = True
 
 app.config[ 'SQLALCHEMY_RECORD_QUERIES' ] = True
 
-app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'mysql+pymysql://root@localhost:3306/RFMD'
+app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'mysql+pymysql://root@db.cs.dal.ca::3306/rfmd'
 
 app.config[ 'SQLALCHEMY_MAX_OVERFLOW' ] = 0
 
