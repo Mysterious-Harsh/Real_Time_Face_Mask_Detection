@@ -1,14 +1,10 @@
-flake8 @ file:///opt/conda/conda-bld/flake8_1648129545443/work
-Flask @ file:///home/ktietz/src/ci/flask_1611932660458/work
-Flask-SQLAlchemy @ file:///home/conda/feedstock_root/build_artifacts/flask-sqlalchemy_1616102249273/work
-
-gunicorn @ file:///Users/runner/miniforge3/conda-bld/gunicorn_1649384960370/work
-
-jellyfish @ file:///opt/concourse/worker/volumes/live/a3ea5aa0-13fc-40da-68a6-cbc194ed3c8f/volume/jellyfish_1647962585030/work
-Jinja2 @ file:///tmp/build/80754af9/jinja2_1612213139570/work
-jinja2-time @ file:///tmp/build/80754af9/jinja2-time_1617751524098/work
-
+flake8
+Flask
+Flask-SQLAlchemy
+gunicorn
+jellyfish
+Jinja2
+jinja2-time
 opencv-python==4.5.5.64
-
-SQLAlchemy @ file:///opt/concourse/worker/volumes/live/bfe20d71-b806-4187-4783-cd5d96eb1af2/volume/sqlalchemy_1647599831148/work
+SQLAlchemy
 torch==1.11.0
