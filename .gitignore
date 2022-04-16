@@ -1,4 +1,4 @@
 model/modelm.pt
-dataset
-videos
-model
+dataset/
+videos/
+model/
