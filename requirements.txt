@@ -1,10 +1,5 @@
-flake8
 Flask
 Flask-SQLAlchemy
 gunicorn
-jellyfish
 Jinja2
-jinja2-time
 opencv-python==4.5.5.64
-SQLAlchemy
-torch==1.11.0
