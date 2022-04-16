@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 gunicorn
 Jinja2
 opencv-python==4.5.5.64
+pymysql
