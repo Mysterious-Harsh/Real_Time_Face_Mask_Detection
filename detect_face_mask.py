@@ -157,5 +157,5 @@ class FaceMaskDetection:
 
 if __name__ == "__main__":
 	md = FaceMaskDetection( "model/best.onnx" )
-	md.start_web( 1 )
+	md.start_web( "crowd_4.mp4" )
 	# md.start_application_window()
