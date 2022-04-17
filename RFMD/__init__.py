@@ -26,9 +26,7 @@ app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'sqlite:///rfmd.db'
 # app.config[ 'SQLALCHEMY_MAX_OVERFLOW' ] = 0
 
 app.config[ 'UPLOAD_FOLDER' ] = 'static/Dataset/Videos'
-
 db = SQLAlchemy( app )
-
 print( "in project" )
 
 import RFMD.com.controller.RegistrationController
