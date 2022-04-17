@@ -20,12 +20,8 @@ app.config[ 'SQLALCHEMY_ECHO' ] = True
 
 app.config[ 'SQLALCHEMY_RECORD_QUERIES' ] = True
 
-<<<<<<< HEAD
 # app.config[ 'SQLALCHEMY_DATABASE_URI' ] = "mysql+pymysql://kishan31199:kishan31@db4free.net:3306/kishan31"
 app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'sqlite:///rfmd.db'
-=======
-# app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'mysql+pymysql://kishan31199:kishan31@db4free.net:3306/kishan31'
->>>>>>> 994e7cd82b9d90adc25d0d89453bc60ede31376b
 
 # app.config[ 'SQLALCHEMY_MAX_OVERFLOW' ] = 0
 
