@@ -1,6 +1,7 @@
 import cv2
 import time
 import sys
+import os
 import numpy as np
 from centroid_tracker import CentroidTracker
 
@@ -10,6 +11,7 @@ class FaceMaskDetection:
 	def __init__(
 	    self, model, input_width=640, input_height=640, iou_threshold=0.4, confidence_threshold=0.5, cuda=False
 	    ):
+
 		self.INPUT_WIDTH = input_width
 		self.INPUT_HEIGHT = input_height
 		self.iou_THRESHOLD = iou_threshold
@@ -156,6 +158,6 @@ class FaceMaskDetection:
 
 
 if __name__ == "__main__":
-	md = FaceMaskDetection( "model/best.onnx" )
+	md = FaceMaskDetection( "best.onnx" )
 	md.start_web( "crowd_4.mp4" )
 	# md.start_application_window()
