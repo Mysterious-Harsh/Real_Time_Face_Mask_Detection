@@ -1,4 +1,5 @@
-<h1 align="center">Real Time Face Mask Detection</h1> 
+<h1 align="center">Real Time Face Mask Detection</h1>
+
 ### Real time facemask detection using yolov5 which is able to detect No-Mask, Improper-Mask and Mask.
 - Implementation of System to Detect Face Mask
 - Detecting Using Real-Time and Video Feed from the system
