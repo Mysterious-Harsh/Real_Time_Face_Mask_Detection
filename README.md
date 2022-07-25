@@ -5,6 +5,11 @@
 - Based on the Yolo5 Object Detection Algorithm
 - YOLO: You Only Look Once Version 5
 - Able to detect a person wearing a mask or not and also improper wearing
+- Trained Model with dataset containing 853 Images
+- Achived Accuracy of 0.85@MAP
+![Performance Graph](./Screenshots/graph.png)
+![Confusion Matrix](./Screenshots/confusion_matrix.png)
+
 
 ## How to Run
 - To run this project install required libraries using requirements.txt file
@@ -24,3 +29,13 @@ python detect_face_mask.py
 ## Screenshots
 ### Web Interface
 #### 1. Login Page
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.52.46%20PM.png)
+
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.53.09%20PM.png)
+
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.54.04%20PM.png)
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.55.37%20PM.png)
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.55.46%20PM.png)
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.06%20PM.png)
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.23%20PM.png)
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.33%20PM.png)
