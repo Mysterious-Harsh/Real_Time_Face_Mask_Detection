@@ -11,3 +11,11 @@
 ```
 pip install -r requirements.txt
 ```
+- To start web server run Main.py file:
+``` 
+python Main.py
+```
+- To run only detection use detect_face_mask.py
+```
+python detect_face_mask.py
+```
