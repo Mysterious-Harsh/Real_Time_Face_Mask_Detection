@@ -6,5 +6,6 @@
 - YOLO: You Only Look Once Version 5
 - Able to detect a person wearing a mask or not and also improper wearing
 
-
+## How to Run
+- To run this project install required libraries using requirements.txt file
 
