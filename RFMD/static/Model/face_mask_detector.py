@@ -63,7 +63,7 @@ class FaceMaskDetector:
 		for r in range( rows ):
 			row = output_data[ r ]
 			confidence = row[ 4 ]
-			if confidence >= self.CONFIDENCE_THRESHOLD:
+			if confidence.any() >= self.CONFIDENCE_THRESHOLD:
 
 				classes_scores = row[ 5 : ]
 				_, _, _, max_indx = cv2.minMaxLoc( classes_scores )
@@ -176,4 +176,5 @@ class FaceMaskDetector:
 			if not flag:
 				continue
 
-			yield ( b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' + bytearray( encodedImage ) + b'\r\n' )
+			yield ( b'--frame\r\n'
+			        b'Content-Type: image/jpeg\r\n\r\n' + bytearray( encodedImage ) + b'\r\n' )
