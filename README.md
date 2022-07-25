@@ -8,4 +8,6 @@
 
 ## How to Run
 - To run this project install required libraries using requirements.txt file
-
+```
+pip install -r requirements.txt
+```
