@@ -19,3 +19,8 @@ python Main.py
 ```
 python detect_face_mask.py
 ```
+- To train the Model use train_model.ipynb file inside model folder
+
+## Screenshots
+### Web Interface
+#### 1. Login Page
