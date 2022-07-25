@@ -30,12 +30,20 @@ python detect_face_mask.py
 ### Web Interface
 #### 1. Login Page
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.52.46%20PM.png)
-
-![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.53.09%20PM.png)
-
+#### 2. User Home
+![Home Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.53.09%20PM.png)
+### Detection From Video
+#### 1.
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.54.04%20PM.png)
+#### 2.
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.55.37%20PM.png)
+#### 3.
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.55.46%20PM.png)
+### Detection From Web Camera
+#### 1. No-Mask
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.06%20PM.png)
-![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.23%20PM.png)
+#### 2. Improper-Mask
 ![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.33%20PM.png)
+#### 3. Mask
+![Login Page](./Screenshots/Screen%20Shot%202022-04-20%20at%207.58.23%20PM.png)
+
